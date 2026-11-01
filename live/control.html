@@ -60,6 +60,7 @@ button.red{background:var(--red);border-color:#b84a33}
     <div class="row"><input id="uid" placeholder="@tenkenhcuaban" autocomplete="off"><button class="primary" id="btnConnect">Kết nối</button><button id="btnDisconnect">Ngắt</button></div>
     <p class="hint">Chỉ đọc sự kiện công khai của phòng live (bình luận, quà, tim). Không cần mật khẩu hay cookie TikTok. Phải bật LIVE trước rồi mới kết nối.</p>
     <button class="gold" id="btnOverlay">Mở màn hình overlay 9:16</button>
+    <button class="gold" id="btnOverlay3d">Mở overlay 3D (thử nghiệm)</button>
     <p class="hint">Trong TikTok LIVE Studio: Add source → Window capture → chọn cửa sổ overlay. Bấm "bật âm thanh" một lần trong cửa sổ đó.</p>
     <h2>Trong sân chùa</h2>
     <div id="people"><table><tbody id="peopleBody"><tr><td class="hint">Chưa có ai</td><td></td></tr></tbody></table></div>
@@ -73,11 +74,31 @@ button.red{background:var(--red);border-color:#b84a33}
     <input id="simText" value="Nam mô A Di Đà Phật, cầu gia đình bình an">
     <div class="row"><button id="btnChat">Gửi bình luận</button></div>
     <div class="row">
-      <button data-gift="Hoa hồng" data-dia="1">Hoa hồng · 1</button>
-      <button data-gift="Đèn hoa sen" data-dia="30">Hoa sen · 30</button>
-      <button data-gift="Chuông vàng" data-dia="199">Chuông · 199</button>
+      <button data-gift="Hoa hồng" data-dia="1">Dâng hương · 1</button>
+      <button data-gift="Quà 5 xu" data-dia="5">Hoa sen · 5</button>
+      <button data-gift="Quà 30 xu" data-dia="30">Đèn hoa sen · 30</button>
+      <button data-gift="Quà 99 xu" data-dia="99">Lễ hội · 99</button>
     </div>
-    <p class="hint">Gõ <b>nam · nữ · sư · ni · tiểu · bà · cao tăng</b> làm bình luận để đổi hình.</p>
+    <div class="row">
+      <button data-say="xin lộc">xin lộc</button>
+      <button data-say="cầu an Thanh Hóa">cầu an</button>
+      <button data-say="cầu siêu ông bà nội">cầu siêu</button>
+      <button data-say="mất ví">mất ví</button>
+      <button data-say="meo">meo</button>
+      <button data-say="gâu">gâu</button>
+      <button data-say="hiu">hiu</button>
+    </div>
+    <div class="row">
+      <button data-say="gõ mõ">gõ mõ</button>
+      <button data-say="xin xăm">xin xăm</button>
+      <button data-say="cầu duyên">cầu duyên</button>
+      <button data-say="cầu tài lộc cho mẹ">cầu tài lộc</button>
+      <button data-say="cầu thi đỗ cho con">cầu thi đỗ</button>
+      <button data-say="sinh nhật Lan">sinh nhật</button>
+      <button data-ev="follow">theo dõi</button>
+      <button data-ev="share">chia sẻ</button>
+    </div>
+    <p class="hint">Gõ <b>nam · nữ · sư · ni · tiểu · bà · cao tăng</b> làm bình luận để đổi hình. Các nút trên gửi bình luận mẫu dưới tên người xem ở trên.</p>
     <h2>Đổ người mẫu</h2>
     <div class="row"><button data-fill="15">15</button><button data-fill="36">36</button><button data-fill="64">64</button><button data-fill="100">100</button></div>
     <button class="red" id="btnClear">Làm trống toàn bộ bồ đoàn</button>
@@ -87,7 +108,7 @@ button.red{background:var(--red);border-color:#b84a33}
       <label>Nhịp<select id="botPace"><option value="slow">Chậm</option><option value="mid" selected>Vừa</option><option value="fast">Nhanh</option></select></label>
       <button id="btnBots">Bật bot</button>
     </div>
-    <p class="hint">Bot chỉ chạy trên màn hình của anh, không phải người xem TikTok thật.</p>
+    <p class="hint">Bot hiện trên live như người ngồi thiền, chỉ bình luận và thả tim (không tặng quà), không phải người xem TikTok thật.</p>
   </section>
 
   <section class="card">
@@ -107,8 +128,18 @@ button.red{background:var(--red);border-color:#b84a33}
     </div>
     <div class="row">
       <label>Nhịp mõ (BPM)<input id="moBpm" type="number" min="20" max="120" value="52"></label>
-      <label>Đọc kinh mỗi (phút)<input id="chantEveryMin" type="number" min="1" max="60" value="3"></label>
+      <label>Hồi hướng mỗi (phút)<input id="chantEveryMin" type="number" min="1" max="60" value="5"></label>
     </div>
+    <div class="row">
+      <label>Mốc nén hương<input id="goalTarget" type="number" min="100" step="100" value="5000"></label>
+      <button id="btnGoalReset">Đặt lại hôm nay</button>
+    </div>
+    <div class="row">
+      <label>Tim để zoom<input id="likeZoom" type="number" min="10" step="10" value="50"></label>
+      <label>Tim/phút đồng tâm<input id="likeRush" type="number" min="50" step="50" value="300"></label>
+      <button id="btnLike50">Thử thả 50 tim</button>
+    </div>
+    <p class="hint">1 tim = 1 nén · "A Di Đà Phật" = 1 nén · cầu an/siêu = 3 nén · 1 xu quà = 10 nén. Đạt mốc sẽ có chuông, mưa hoa và giọng đọc. Mỗi người thả đủ số tim (rồi gấp 4, 10, 20 lần) sẽ được zoom vào chỗ ngồi; quà từ 30 xu cũng được zoom.</p>
     <div class="row"><button id="btnBell">🔔 Thỉnh chuông</button><button id="btnMo">Gõ mõ</button></div>
     <h2>Cảnh</h2>
     <label>Tên thiền đường<input id="title" value="Chánh Điện Tịnh Tâm"></label>
@@ -117,6 +148,14 @@ button.red{background:var(--red);border-color:#b84a33}
       <label>Số chỗ ngồi<select id="seatMode"><option value="auto">Tự mở rộng 24 → 100</option><option value="24">24</option><option value="36">36</option><option value="64">64</option><option value="100">100</option></select></label>
     </div>
     <label class="check"><input type="checkbox" id="joinOnEnter"> Người vào phòng cũng được ngồi (không cần bình luận)</label>
+    <label class="check"><input type="checkbox" id="ambient" checked> Người mẫu và các thầy thỉnh thoảng nói câu vui (không bao giờ dùng tên người xem thật)</label>
+    <label>Mỗi bao nhiêu giây<input id="ambientEvery" type="number" min="3" max="120" value="5"></label>
+    <h2>Lịch phát & thiền dẫn</h2>
+    <label>Lịch hằng ngày, mỗi dòng "giờ:phút nội dung". Dòng có chữ "thiền" sẽ tự bắt đầu thiền dẫn đúng giờ.<textarea id="schedule" rows="6"></textarea></label>
+    <div class="row">
+      <label>Thiền dẫn (phút)<input id="meditateMin" type="number" min="1" max="60" value="10"></label>
+      <button id="btnMed">Bắt đầu thiền ngay</button><button id="btnMedStop">Dừng thiền</button>
+    </div>
   </section>
 </div>
 
@@ -131,7 +170,7 @@ const $ = id => document.getElementById(id);
 let ws = null;
 const send = (cmd, extra={}) => ws?.readyState===1 && ws.send(JSON.stringify({ t:'ctl', cmd, ...extra }));
 function logLine(s){ const el=$('log'); el.textContent += s + '\n'; el.scrollTop = el.scrollHeight; }
-const SETTING_IDS = ['voice','pitch','rate','music','mo','autoChant','moBpm','chantEveryMin','title','subtitle','seatMode','joinOnEnter'];
+const SETTING_IDS = ['voice','pitch','rate','music','mo','autoChant','moBpm','chantEveryMin','title','subtitle','seatMode','joinOnEnter','goalTarget','likeZoom','likeRush','ambient','ambientEvery','schedule','meditateMin'];
 function fillSettings(s){ for (const k of SETTING_IDS){ const el=$(k); if (!el || s[k]===undefined) continue; if (el.type==='checkbox') el.checked=!!s[k]; else el.value=s[k]; } }
 function readSettings(){ const o={}; for (const k of SETTING_IDS){ const el=$(k); o[k] = el.type==='checkbox' ? el.checked : el.type==='number' ? +el.value : el.value; } return o; }
 const people = new Map();
@@ -168,13 +207,20 @@ $('btnConnect').onclick = () => send('connect', { uniqueId: $('uid').value });
 $('uid').onkeydown = e => { if (e.key==='Enter') send('connect', { uniqueId: $('uid').value }); };
 $('btnDisconnect').onclick = () => send('disconnect');
 $('btnOverlay').onclick = () => window.open('/live/overlay.html', 'overlay916', 'width=540,height=960');
+$('btnOverlay3d').onclick = () => window.open('/live/overlay3d.html', 'overlay3d', 'width=540,height=960');
 $('btnChat').onclick = () => send('chat', { name: $('simName').value, text: $('simText').value });
 document.querySelectorAll('[data-gift]').forEach(b => b.onclick = () => send('gift', { name: $('simName').value, gift: b.dataset.gift, diamonds: +b.dataset.dia, count: 1 }));
+document.querySelectorAll('[data-say]').forEach(b => b.onclick = () => send('chat', { name: $('simName').value, text: b.dataset.say }));
+$('btnLike50').onclick = () => send('like', { name: $('simName').value, n: 50 });
+document.querySelectorAll('[data-ev]').forEach(b => b.onclick = () => send(b.dataset.ev, { name: $('simName').value }));
+$('btnGoalReset').onclick = () => { if (confirm('Đặt lại số nén hương, số Phật tử và lộc hôm nay về 0?')) send('goalReset'); };
 document.querySelectorAll('[data-fill]').forEach(b => b.onclick = () => send('fill', { n: +b.dataset.fill }));
 $('btnClear').onclick = () => send('clear');
 $('btnBots').onclick = () => send('bots', { on: $('btnBots').textContent.includes('Bật'), n: +$('botN').value, pace: $('botPace').value });
 $('btnSay').onclick = () => send('say', { text: $('sayText').value });
 $('btnChant').onclick = () => send('chant');
+$('btnMed').onclick = () => send('meditate');
+$('btnMedStop').onclick = () => send('medStop');
 $('btnBell').onclick = () => send('bell');
 $('btnMo').onclick = () => send('mo');
 for (const k of SETTING_IDS) $(k).addEventListener('change', () => send('settings', { settings: readSettings() }));

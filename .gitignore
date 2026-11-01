@@ -5,3 +5,7 @@ live/tts/
 .env.*
 .DS_Store
 Thumbs.db
+live/data.json
+
+# purchased 3D models: licensed to this channel, not for redistribution
+assets/models/*.glb
